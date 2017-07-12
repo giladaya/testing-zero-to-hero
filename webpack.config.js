@@ -3,7 +3,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
-    require.resolve('webpack-dev-server/client') + '?/',
     './src/index.js'
   ],
   output: {
@@ -28,7 +27,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'My App',
       inject: true,
       template: 'public/index.html',
     })
