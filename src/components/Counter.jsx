@@ -30,8 +30,18 @@ export default class Counter extends React.Component {
         return (
             <div>
                 <span>{this.state.count}</span><br/>
-                <button onClick={() => {this.inc(-1)}}>-</button>
-                <button onClick={() => {this.inc(1)}}>+</button>
+                <button 
+                  onClick={() => {this.inc(-1)}}
+                  disabled={this.state.count <= this.props.min}
+                >
+                  -
+                </button>
+                <button 
+                  onClick={() => {this.inc(1)}}
+                  disabled={this.state.count >= this.props.max}
+                >
+                  +
+                </button>
             </div>
         )
     }
