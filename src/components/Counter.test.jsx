@@ -1,7 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Counter from './Counter.jsx';
-import { mount } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+// React 16 Enzyme adapter
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('Smoke tests', () => {
   it('renders without crashing', () => {

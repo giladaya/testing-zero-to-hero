@@ -1,34 +1,32 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: [
+    'react-hot-loader/patch',
     './src/index.js'
   ],
-  output: {
-    filename: 'bundle.js',
-    path: path.join(__dirname, 'dist'),
-    publicPath: '/'
-  },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader'
-    }]
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      }
+    ]
   },
   resolve: {
     extensions: ['*', '.js', '.jsx']
   },
-  devServer: {
-    contentBase: './public',
-    port: 8080,
-    watchContentBase: true
+  output: {
+    path: __dirname + '/dist',
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: 'public/index.html',
-    })
-  ]
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  devServer: {
+    contentBase: './dist',
+    hot: true
+  }
 };
